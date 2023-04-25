@@ -3,31 +3,31 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>News HTML-5 Template </title>
+        <title>Trang chủ</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets/css/ticker-style.css">
-            <link rel="stylesheet" href="assets/css/flaticon.css">
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/owl.carousel.min.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/ticker-style.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/flaticon.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/slicknav.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/animate.min.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/magnific-popup.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/themify-icons.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/slick.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/nice-select.css">
+            <link rel="stylesheet" href="{{url('/')}}/assets/css/style.css">
    </head>
 
    <body>
        
     <!-- Preloader Start -->
-    <!-- <div id="preloader-active">
+    <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
     <!-- Preloader Start -->
 
     <header>
@@ -49,8 +49,7 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
                                     <ul>     
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        <li><img src="assets/img/icon/header_icon1.png" alt="">{{ now()->locale('vi')->isoFormat('dddd, Do MMMM YYYY, h:mm')}}</li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
@@ -93,7 +92,7 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="/">Trang chủ</a></li>
                                             <li><a href="categori.html">Category</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="latest_news.html">Latest News</a></li>
@@ -1047,43 +1046,43 @@
 	<!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="{{url("/")}}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
+		<script src="{{url("/")}}/assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="{{url("/")}}/assets/js/popper.min.js"></script>
+        <script src="{{url("/")}}/assets/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.slicknav.min.js"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
+        <script src="{{url("/")}}/assets/js/owl.carousel.min.js"></script>
+        <script src="{{url("/")}}/assets/js/slick.min.js"></script>
         <!-- Date Picker -->
-        <script src="./assets/js/gijgo.min.js"></script>
+        <script src="{{url("/")}}/assets/js/gijgo.min.js"></script>
 		<!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
+        <script src="{{url("/")}}/assets/js/wow.min.js"></script>
+		<script src="{{url("/")}}/assets/js/animated.headline.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.magnific-popup.js"></script>
 
         <!-- Breaking New Pluging -->
-        <script src="./assets/js/jquery.ticker.js"></script>
-        <script src="./assets/js/site.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.ticker.js"></script>
+        <script src="{{url("/")}}/assets/js/site.js"></script>
 
 		<!-- Scrollup, nice-select, sticky -->
-        <script src="./assets/js/jquery.scrollUp.min.js"></script>
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.scrollUp.min.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.nice-select.min.js"></script>
+		<script src="{{url("/")}}/assets/js/jquery.sticky.js"></script>
         
         <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="{{url("/")}}/assets/js/contact.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.form.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.validate.min.js"></script>
+        <script src="{{url("/")}}/assets/js/mail-script.js"></script>
+        <script src="{{url("/")}}/assets/js/jquery.ajaxchimp.min.js"></script>
         
 		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
+        <script src="{{url("/")}}/assets/js/plugins.js"></script>
+        <script src="{{url("/")}}/assets/js/main.js"></script>
         
     </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BaiVietController;
+use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Route::get('/', [HomeController::class,'index']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/thongke', [AdminController::class,'index']);
-    Route::resource('/baiviet', BaiVietController::class); 
+    Route::get('/baiviet', [BaiVietController::class,'index']); 
+    Route::get('/thembaiviet', [BaiVietController::class,'create']); 
 });
 
+Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
+Route::get('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');

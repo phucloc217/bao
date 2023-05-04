@@ -35,8 +35,8 @@
                         class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span
                         class="title">Bài viết</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách bài viết</a></li>
-                    <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm bài viết</a></li>
+                    <li><a class="sidebar-link" href="admin/baiviet">Danh sách bài viết</a></li>
+                    <li><a class="sidebar-link" href="/admin/thembaiviet">Thêm bài viết</a></li>
                 </ul>
             </li>
             <li class="nav-item"><a class="sidebar-link" href="/email"><span class="icon-holder"><i

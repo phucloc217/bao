@@ -19,7 +19,7 @@ class BaiVietController extends Controller
      */
     public function create()
     {
-        //
+        return view('AdminPage.ThemBaiViet');
     }
 
     /**

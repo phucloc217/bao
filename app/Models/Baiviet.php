@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $tieude
  * @property string $noidung
+ * @property string|null $slug
  * @property string $anh
  * @property bool $trangthai
  * @property int $danhmuc
@@ -35,8 +36,17 @@ class Baiviet extends Model
 	protected $fillable = [
 		'tieude',
 		'noidung',
+		'slug',
 		'anh',
 		'trangthai',
 		'danhmuc'
 	];
+	public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'tieude'
+            ]
+        ];
+    }
 }

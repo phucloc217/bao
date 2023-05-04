@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,'index']);
-Route::get('/admin', [AdminController::class,'index']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/thongke', [AdminController::class,'index']);
+    Route::resource('/baiviet', BaiVietController::class); 
+});
+

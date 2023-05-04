@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Danhmuc;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $data=[];
-        return view('index',compact('data'));
+
+        $danhmuc=Danhmuc::all();
+        return view('index',compact('danhmuc'));
     }
 }

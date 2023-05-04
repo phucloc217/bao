@@ -27,7 +27,7 @@
    <body>
        
     <!-- Preloader Start -->
-    <div id="preloader-active">
+    {{-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  --}}
     <!-- Preloader Start -->
 
     <header>
@@ -93,16 +93,14 @@
                                     <nav>                  
                                         <ul id="navigation">    
                                             <li><a href="/">Trang chủ</a></li>
-                                            <li><a href="categori.html">Category</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="latest_news.html">Latest News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="#">Pages</a>
+                                            @for ($i = 0; $i < 7; $i++)
+                                            <li><a href="{{$danhmuc[$i]->slug}}">{{$danhmuc[$i]->tendanhmuc}}</a></li>
+                                            @endfor
+                                            <li><a href="#">Chủ đề khác</a>
                                                 <ul class="submenu">
-                                                    <li><a href="elements.html">Element</a></li>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="details.html">Categori Details</a></li>
+                                                    @for ($i = 7; $i < count($danhmuc); $i++)
+                                            <li><a href="{{$danhmuc[$i]->slug}}">{{$danhmuc[$i]->tendanhmuc}}</a></li>
+                                            @endfor
                                                 </ul>
                                             </li>
                                         </ul>

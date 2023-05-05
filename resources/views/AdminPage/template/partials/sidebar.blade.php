@@ -21,84 +21,37 @@
             </div>
         </div>
         <ul class="sidebar-menu scrollable pos-r">
-            <li class="nav-item mT-30 actived"><a class="sidebar-link" href="/admin/thongke"><span class="icon-holder"><i
-                            class="c-blue-500 ti-home"></i> </span><span class="title">Thống kê</span></a></li>
+            <li class="nav-item mT-30 actived"><a class="sidebar-link" href="/admin"><span
+                        class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Thống
+                        kê</span></a></li>
+
             <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span
-                        class="title">Danh mục</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                        class="icon-holder"><i class="c-green-500 ti-layout-grid2"></i> </span><span
+                        class="title">Chuyên mục</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="">Danh sách danh mục</a></li>
-                    <li><a class="sidebar-link" href="/datatable">Thêm danh mục</a></li>
+                    <li><a class="sidebar-link" href="{{ route('chuyenmuc.index') }}">Danh sách chuyên mục</a></li>
+                    <li><a class="sidebar-link" href="{{ route('chuyenmuc.create') }}">Thêm chuyên mục</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
                         class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span
                         class="title">Bài viết</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="admin/baiviet">Danh sách bài viết</a></li>
-                    <li><a class="sidebar-link" href="/admin/thembaiviet">Thêm bài viết</a></li>
-                </ul>
-            </li>
-            <li class="nav-item"><a class="sidebar-link" href="/email"><span class="icon-holder"><i
-                            class="c-brown-500 ti-email"></i> </span><span class="title">Email</span></a></li>
-            <li class="nav-item"><a class="sidebar-link" href="/compose"><span class="icon-holder"><i
-                            class="c-blue-500 ti-share"></i> </span><span class="title">Compose</span></a></li>
-            <li class="nav-item"><a class="sidebar-link" href="/calendar"><span class="icon-holder"><i
-                            class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Calendar</span></a>
-            </li>
-            <li class="nav-item"><a class="sidebar-link" href="/chat"><span class="icon-holder"><i
-                            class="c-deep-purple-500 ti-comment-alt"></i> </span><span class="title">Chat</span></a>
-            </li>
-            <li class="nav-item"><a class="sidebar-link" href="/charts"><span class="icon-holder"><i
-                            class="c-indigo-500 ti-bar-chart"></i> </span><span class="title">Charts</span></a></li>
-            <li class="nav-item"><a class="sidebar-link" href="/forms"><span class="icon-holder"><i
-                            class="c-light-blue-500 ti-pencil"></i> </span><span class="title">Forms</span></a></li>
-            <li class="nav-item dropdown"><a class="sidebar-link" href="/ui"><span class="icon-holder"><i
-                            class="c-pink-500 ti-palette"></i> </span><span class="title">UI Elements</span></a></li>
-            <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span
-                        class="title">Tables</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="/basic-table">Basic Table</a></li>
-                    <li><a class="sidebar-link" href="/datatable">Data Table</a></li>
+                    <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách bài viết</a></li>
+                    <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm bài viết</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-purple-500 ti-map"></i> </span><span
-                        class="title">Maps</span>
+                        class="icon-holder"><i class="c-red-500 ti-user"></i> </span><span class="title">Tác giả</span>
                     <span class="arrow"><i class="ti-angle-right"></i></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/google-maps">Google Map</a></li>
-                    <li><a href="/vector-maps">Vector Map</a></li>
+                    <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách tác giả</a></li>
+                    <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm tác giả</a></li>
                 </ul>
             </li>
-            <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span
-                        class="title">Pages</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="/blank">Blank</a></li>
-                    <li><a class="sidebar-link" href="/404">404</a></li>
-                    <li><a class="sidebar-link" href="/500">500</a></li>
-                    <li><a class="sidebar-link" href="/signin">Sign In</a></li>
-                    <li><a class="sidebar-link" href="/signup">Sign Up</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-teal-500 ti-view-list-alt"></i> </span><span
-                        class="title">Multiple Levels</span> <span class="arrow"><i
-                            class="ti-angle-right"></i></span></a>
-                <ul class="dropdown-menu">
-                    <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span></a></li>
-                    <li class="nav-item dropdown"><a href="javascript:void(0);"><span>Menu Item</span> <span
-                                class="arrow"><i class="ti-angle-right"></i></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0);">Menu Item</a></li>
-                            <li><a href="javascript:void(0);">Menu Item</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            <li class="nav-item"><a class="sidebar-link" href="/admin/thongke"><span
+                        class="icon-holder"><i class="c-purple-500 ti-settings"></i> </span><span class="title">Cài đặt</span></a></li>
+
         </ul>
     </div>
 </div>

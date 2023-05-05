@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
-    @include('template.partials.loader')
-
-    <link href="style.css" rel="stylesheet">
+    @include('AdminPage.template.partials.loader')
+    <link rel="stylesheet" href="{{url('')}}/AdminPage/css/app.css">
+    {{-- <link href="style.css" rel="stylesheet"> --}}
 </head>
 
 <body class="app">
@@ -27,8 +27,9 @@
     <div class="peers ai-s fxw-nw h-100vh">
         @yield('content')
     </div>
-    <script type="text/javascript" src="vendor.js"></script>
-    <script type="text/javascript" src="bundle.js"></script>
+    <script src="{{url('')}}/AdminPage/js/app.js"></script>
+    {{-- <script type="text/javascript" src="vendor.js"></script>
+    <script type="text/javascript" src="bundle.js"></script> --}}
 </body>
 
 </html>

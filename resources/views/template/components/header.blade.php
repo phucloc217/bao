@@ -46,12 +46,12 @@
                                     <ul id="navigation">    
                                         <li><a href="/">Trang chủ</a></li>
                                         @for ($i = 0; $i < 6; $i++)
-                                        <li><a href="{{$danhmuc[$i]->slug}}">{{$danhmuc[$i]->tendanhmuc}}</a></li>
+                                        <li><a href="{{$danhmuc[$i]->slug}}">{{ucwords($danhmuc[$i]->tendanhmuc)}}</a></li>
                                         @endfor
                                         <li><a href="#">Chủ đề khác</a>
                                             <ul class="submenu">
                                                 @for ($i = 6; $i < count($danhmuc); $i++)
-                                        <li><a href="{{$danhmuc[$i]->slug}}">{{$danhmuc[$i]->tendanhmuc}}</a></li>
+                                        <li><a href="{{$danhmuc[$i]->slug}}">{{ucwords($danhmuc[$i]->tendanhmuc)}}</a></li>
                                         @endfor
                                             </ul>
                                         </li>

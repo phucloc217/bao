@@ -8,8 +8,8 @@
     <title>@yield('title')</title>
 
     @include('AdminPage.template.partials.loader')
-
-    <link href="{{url('')}}/admin/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url('')}}/AdminPage/css/app.css">
+    {{-- <link href="{{url('')}}/admin/css/style.css" rel="stylesheet"> --}}
 </head>
 
 <body class="app">
@@ -37,8 +37,9 @@
             @include('AdminPage.template.partials.footer')
         </div>
     </div>
-    <script type="text/javascript" src="{{url('')}}/admin/js/vendor.js"></script>
-    <script type="text/javascript" src="{{url('')}}/admin/js/bundle.js"></script>
+    <script src="{{url('')}}/AdminPage/js/app.js"></script>
+    {{-- <script type="text/javascript" src="{{url('')}}/admin/js/vendor.js"></script>
+    <script type="text/javascript" src="{{url('')}}/admin/js/bundle.js"></script> --}}
 </body>
 
 </html>

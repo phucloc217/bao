@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Baiviet;
+use App\Models\Danhmuc;
 use Illuminate\Http\Request;
 
 class BaiVietController extends Controller
@@ -11,7 +13,8 @@ class BaiVietController extends Controller
      */
     public function index()
     {
-        return view('AdminPage.DanhSachBaiViet');
+        $data=Baiviet::all();
+        return view('AdminPage.DanhSachBaiViet',compact('data'));
     }
 
     /**
@@ -19,7 +22,8 @@ class BaiVietController extends Controller
      */
     public function create()
     {
-        return view('AdminPage.ThemBaiViet');
+        $chuyenmuc=Danhmuc::all();
+        return view('AdminPage.ThemBaiViet',compact('chuyenmuc'));
     }
 
     /**

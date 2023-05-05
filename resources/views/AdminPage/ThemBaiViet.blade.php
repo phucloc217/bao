@@ -17,7 +17,15 @@
                 <div class="mt-30">
                     <div class="form-group">
                         <strong>Tiêu đề:</strong>
-                        <input type="text" name="title" class="form-control" placeholder="Tiêu đề">
+                        <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề">
+                    </div>
+                    <div class="form-group">
+                        <strong>Chuyên mục:</strong>
+                        <select name="chuyenmuc" id="chuyenmuc" class="form-control">
+                            @foreach ($chuyenmuc as $item)
+                                <option value="{{$item->id}}">{{ucwords($item->tendanhmuc)}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <strong>Nội dung:</strong>

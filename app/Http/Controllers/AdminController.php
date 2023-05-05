@@ -10,4 +10,8 @@ class AdminController extends Controller
     {
         return view('AdminPage/index');
     }
+    public function login()
+    {
+        return view('AdminPage/DangNhap');
+    }
 }

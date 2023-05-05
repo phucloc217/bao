@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $tendanhmuc
  * @property string|null $slug
+ * 
+ * @property Collection|Baiviet[] $baiviets
  *
  * @package App\Models
  */
@@ -26,4 +29,9 @@ class Danhmuc extends Model
 		'tendanhmuc',
 		'slug'
 	];
+
+	public function baiviets()
+	{
+		return $this->hasMany(Baiviet::class, 'danhmuc');
+	}
 }

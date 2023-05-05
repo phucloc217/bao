@@ -3,7 +3,7 @@
 @section('title', 'Danh sách bài viết')
 
 @section('content')
-	<div class="container-fluid">
+    <div class="container-fluid">
         <h4 class="c-grey-900 mT-10 mB-30">Bài viết</h4>
         <div class="row">
             <div class="col-md-12">
@@ -29,7 +29,19 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            
+                            @foreach ($data as $index => $item)
+                                <tr>
+                                    <th>{{ $index + 1 }}</th>
+                                    <th>{{ $item->tieude }}</th>
+                                    <th></th>
+                                    <th>
+                                        @isset($item->chuyenmuc->tendanhmuc)
+                                            {{ $item->chuyenmuc->tendanhmuc }}
+                                        @endisset
+                                    </th>
+                                    <th>{{ $item->trangthai }}</th>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

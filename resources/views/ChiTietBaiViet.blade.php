@@ -1,6 +1,11 @@
 @extends('template.main')
 @section('title', ucwords($data->tieude) . ' - PL News - Tin tức mới nhất')
 @section('content')
+<style>
+.about-prea img{
+    height: auto; max-width: 100%;
+}
+</style>
     <!-- About US Start -->
     <div class="about-area">
         <div class="container">

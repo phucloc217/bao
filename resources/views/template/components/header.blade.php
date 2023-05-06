@@ -8,7 +8,7 @@
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="header-info-left">
                                 <ul>     
-                                    <li><img src="assets/img/icon/header_icon1.png" alt="">{{ now()->locale('vi')->isoFormat('dddd, Do MMMM YYYY, h:mm')}}</li>
+                                    <li><img src="assets/img/icon/header_icon1.png" alt="">{{ucwords(now()->locale('vi_VN')->isoFormat('dddd, Do MMMM YYYY'))}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -38,10 +38,10 @@
                         <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                             <!-- sticky -->
                                 <div class="sticky-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             <!-- Main-menu -->
-                            <div class="main-menu d-none d-md-block">
+                            <div class="main-menu d-none d-md-block mr-0">
                                 <nav>                  
                                     <ul id="navigation">    
                                         <li><a href="/">Trang chủ</a></li>

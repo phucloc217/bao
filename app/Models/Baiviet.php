@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,16 +25,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Tacgium|null $tacgium
+ * @property Tacgia|null $tacgia
  *
  * @package App\Models
  */
 class Baiviet extends Model
 {
+	use Sluggable;
 	protected $table = 'baiviet';
 
 	protected $casts = [
-		'trangthai' => 'bool',
 		'danhmuc' => 'int',
 		'tacgia' => 'int'
 	];
@@ -57,5 +58,13 @@ class Baiviet extends Model
 	public function tacgia()
 	{
 		return $this->belongsTo(Tacgia::class, 'tacgia');
+	}
+	public function sluggable():array
+    {
+        return [
+            'slug' => [
+                'source' => 'tieude'
+            ]
+        ];
 	}
 }

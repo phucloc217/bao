@@ -11,25 +11,24 @@ class HomeController extends Controller
     public function index()
     {
 
-        $danhmuc=Danhmuc::where('trangthai','=','1')->get();
-        return view('index',compact('danhmuc'));
+        $danhmuc = Danhmuc::all();
+        return view('index', compact('danhmuc'));
     }
 
     public function loadUrl($slug)
     {
-        $danhmuc=Danhmuc::all();
-        
-        if(!preg_match("/[0-9]$/", $slug))
-        {
-        $check = Danhmuc::where('slug','LIKE',$slug)->first();
-        $data = Baiviet::where('danhmuc','=',$check->id)->orderBy('created_at','desc')->paginate(10);
-        return view('ChuyenMuc',compact('danhmuc','check','data'));
-        }
-        else
-        {
-            $url =  explode( '-post', $slug ) ;
-            $data = Baiviet::where('slug','LIKE',$url)->first();
-            return view('ChiTietBaiViet',compact('danhmuc','data'));
+        $danhmuc = Danhmuc::all();
+        $url = explode('-post', $slug);
+        if (count($url) == 1) {
+            $check = Danhmuc::where('slug', 'LIKE', $slug)->first();
+            if ($check != null) {
+                $data = Baiviet::where('danhmuc', '=', $check->id)->where('trangthai', '=', '1')->orderBy('created_at', 'desc')->paginate(10);
+                return view('ChuyenMuc', compact('danhmuc', 'check', 'data'));
+            }
+        } else {
+
+            $data = Baiviet::where('slug', 'LIKE', $url)->first();
+            return view('ChiTietBaiViet', compact('danhmuc', 'data'));
         }
     }
 }

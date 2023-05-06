@@ -47,7 +47,7 @@
                                     <th>{{ ucwords($item->tendanhmuc) }}</th>
                                     <th>{{ $item->baiviets()->count() }}</th>
                                     <th>
-                                        <button class="btn btn-warning text-light"><i class="ti-pencil"></i> </button>
+                                        <a href="{{route('chuyenmuc.edit',$item->id)}}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
                                         <button class="btn btn-danger text-light" onclick="modalDelete({{$item->id}})"><i
                                                 class="ti-trash"></i> </button>
                                     </th>

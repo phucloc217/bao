@@ -98,7 +98,8 @@ class ChuyenMucController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Danhmuc::find($id);
+        return view('AdminPage.CapNhatChuyenMuc', compact('data'));
     }
 
     /**
@@ -106,7 +107,49 @@ class ChuyenMucController extends Controller
      */
     public function update(Request $request, string $id)
     {
- 
+        $chuyenmuc = Danhmuc::find($id);
+        if ($chuyenmuc != null) {
+            if (isset($request->tenchuyenmuc)) {
+
+                //Chuẩn hóa chữ
+                $tenchuyenmuc = trim($request->tenchuyenmuc);
+                $tenchuyenmuc = ucwords($tenchuyenmuc);
+
+                //Kiểm tra tên chuyên mục tồn tại hay chưa
+                $checkChuyenMuc = Danhmuc::where('tendanhmuc', 'LIKE', $tenchuyenmuc)->where('id', '!=', $id)->get();
+
+                //Kiểm tra slug đã tồn tại hay chưa
+                $checkSlug = Danhmuc::where('id', '!=', $id)->where('slug', 'LIKE', $request->slug)->get();
+
+                //Nếu chưa tiến hành lưu, ngược lại thông báo
+                if ($checkChuyenMuc->isEmpty()) {
+                    if ($checkSlug->isEmpty()) {
+                        //Gắn tên danh mục
+                        $chuyenmuc->tendanhmuc = $tenchuyenmuc;
+
+                        //Gắn slug
+                        $chuyenmuc->slug = $request->slug;
+
+                        //lưu
+                        if ($chuyenmuc->save()) {
+                            return redirect()->route('chuyenmuc.edit', $id)->with('success', 'Cập nhật thành công');
+                        } else {
+                            return redirect()->route('chuyenmuc.edit', $id)->with('error', 'Cập nhật không thành công');
+                        }
+                    } else {
+                        return redirect()->route('chuyenmuc.edit', $id)->with('error', 'Slug đã tồn tại');
+                    }
+                } else {
+                    return redirect()->route('chuyenmuc.edit', $id)->with('error', 'Tên chuyên mục đã tồn tại');
+                }
+
+            } else {
+                return redirect()->route('chuyenmuc.edit', $id)->with('error', 'Bạn phải nhập vào tên chuyên mục');
+            }
+        } else {
+            return 0;
+        }
+
     }
 
     /**
@@ -114,20 +157,14 @@ class ChuyenMucController extends Controller
      */
     public function destroy(string $id)
     {
-        $chuyenmuc= Danhmuc::find($id);
-        if($chuyenmuc !=null)
-        {
-            if($chuyenmuc->delete())
-            {
+        $chuyenmuc = Danhmuc::find($id);
+        if ($chuyenmuc != null) {
+            if ($chuyenmuc->delete()) {
                 return redirect()->route('chuyenmuc.index')->with('success', 'Xóa thành công');
-            }
-            else
-            {
+            } else {
                 return redirect()->route('chuyenmuc.index')->with('error', 'Xóa không thành công');
             }
-        }
-        else
-        {
+        } else {
             return redirect()->route('chuyenmuc.index')->with('error', 'Không tìm thấy chuyên mục này');
         }
     }

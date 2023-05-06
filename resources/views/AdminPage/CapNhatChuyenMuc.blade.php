@@ -1,6 +1,6 @@
 @extends('AdminPage.template.main')
 
-@section('title', 'Thêm chuyên mục')
+@section('title', 'Cập nhật chuyên mục')
 
 @section('content')
     <script>
@@ -43,7 +43,7 @@
         <div class="masonry-sizer col-md-6"></div>
         <div class="masonry-item col-md-12">
             <div class="bgc-white p-20 bd">
-                <h4 class="c-grey-900">Thêm Chuyên Mục</h4>
+                <h4 class="c-grey-900">Cập Nhật Chuyên Mục</h4>
                 <div class="mt-30">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
@@ -57,17 +57,17 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
-                    <form action="{{ route('chuyenmuc.store') }}" method="POST">
+                    <form action="{{ route('chuyenmuc.update',$data->id) }}" method="POST">
                         @csrf
+                        @method('patch')
                         <div class="form-group">
                             <strong>Tên chuyên mục:</strong>
                             <input type="text" name="tenchuyenmuc" id="tenchuyenmuc" class="form-control"
-                                placeholder="Tên chuyên mục" onkeyup="ChangeToSlug();">
+                                placeholder="Tên chuyên mục" value="{{$data->tendanhmuc}}" onkeyup="ChangeToSlug();">
                         </div>
                         <div class="form-group">
                             <strong>Slug:</strong>
-                            <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug"
-                                readonly>
+                            <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" value="{{$data->slug}}" readonly>
                         </div>
                         <div class="form-group mt-5">
                             <button class="btn btn-success" type="submit">Lưu</button>

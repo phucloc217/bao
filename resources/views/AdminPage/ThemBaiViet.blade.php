@@ -84,5 +84,6 @@
             .catch(error => {
 
             });
+            CKEDITOR.config.extraPlugins = "imageresize";
     </script>
 @endsection

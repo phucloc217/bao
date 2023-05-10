@@ -5,6 +5,7 @@ use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\ChuyenMucController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TextClassificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//Text Classfier
+Route::get('/test', [TextClassificationController::class,'test']);
 Route::get('/', [HomeController::class,'index']);
 
 
@@ -38,3 +40,5 @@ Route::get('ckeditor/upload', [CkeditorController::class, 'upload'])->name('cked
 
 
 Route::get('/{slug}',[HomeController::class,'loadUrl']);
+
+

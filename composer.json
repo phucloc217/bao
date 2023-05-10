@@ -2,7 +2,19 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "repositories": {
+        "text-classification": {
+            "type": "path",
+            "url": "package/locng/text-classification",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -11,7 +23,8 @@
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "reliese/laravel": "^1.2"
+        "reliese/laravel": "^1.2",
+        "locng/text-classification":"@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

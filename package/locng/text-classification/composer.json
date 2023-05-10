@@ -1,0 +1,25 @@
+{
+    "name": "locng/text-classification",
+    "description": "A Package helps to classifier text.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Locng\\TextClassification\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "phucloc2107",
+            "email": "loc.nguyen456789@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Locng\\TextClassification\\TextClassificationServiceProvider"
+            ]
+        }
+    }
+}

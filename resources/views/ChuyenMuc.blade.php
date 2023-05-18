@@ -18,32 +18,30 @@
                             <!-- Nav Card -->
                             <div class="tab-content" id="nav-tabContent">
                                 <!-- card one -->
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                <div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel"
                                     aria-labelledby="nav-home-tab">
                                     <div class="whats-news-caption">
-                                        <div class="row">
-                                            @foreach ($data as $item)
-                                                <div class="media post_item d-flex mt-2">
-
-                                                    <div class="trand-right-img w-25 mr-2">
-                                                        <a href="{{ '/' . $item->slug . '-post-' . $item->id }}"> <img
-                                                                src="assets/img/{{ $item->anh }}" alt=""
-                                                                class="img-fuild w-100"></a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4><a href="{{ '/' . $item->slug . '-post-' . $item->id }}"
-                                                                class="post-link h4">{{ $item->tieude }}</a>
-                                                        </h4>
-                                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                                            Laudantium, praesentium, vel consequuntur eos amet obcaecati
-                                                            quas incidunt, nisi earum aliquam facere! Animi debitis, cum
-                                                            quam molestiae ratione repudiandae in laudantium.
-                                                        </p>
-                                                    </div>
-
+                                        @foreach ($data as $item)
+                                            <div class="media post_item d-flex mt-2 row">
+                                                <div
+                                                    class="trand-right-img w-100 pr-0 col-md-3 col-sm-12 text-center p-0 mr-2">
+                                                    <a href="{{ '/' . $item->slug . '-post-' . $item->id }}" class="p-0">
+                                                        <img src="{{ $item->anh }}" alt=""
+                                                            class="img-fuild w-100" style="max-width: 100vw;"></a>
                                                 </div>
-                                            @endforeach
-                                        </div>
+                                                <div class="media-body col-md-9 col-sm-12 p-0">
+                                                    <h4 class="w-auto"><a
+                                                            href="{{ '/' . $item->slug . '-post-' . $item->id }}"
+                                                            class="post-link h4">{{ $item->tieude }}</a>
+                                                    </h4>
+                                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                        Laudantium, praesentium, vel consequuntur eos amet obcaecati
+                                                        quas incidunt, nisi earum aliquam facere! Animi debitis, cum
+                                                        quam molestiae ratione repudiandae in laudantium.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
 

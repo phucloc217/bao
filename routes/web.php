@@ -6,6 +6,7 @@ use App\Http\Controllers\ChuyenMucController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TextClassificationController;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,18 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Text Classfier
-Route::get('/test', [TextClassificationController::class,'test']);
-Route::get('/', [HomeController::class,'index']);
+Route::post('/predict', [TextClassificationController::class, 'predict']);
+Route::get('/', [HomeController::class, 'index']);
 
 
 //Admin Page Route
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class,'index']);
-    Route::get('/dangnhap', [AdminController::class,'login']);
-    Route::resource('/baiviet', BaiVietController::class); 
-    Route::resource('/chuyenmuc', ChuyenMucController::class); 
-    Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class,'destroy']);
-   
+Route::get('admin/login', [AdminController::class, 'login'])->name('login');
+Route::post('admin/login', [AdminController::class, 'postLogin'])->name('postLogin');
+Route::get('logout',[AdminController::class,'logout'])->name('logout');
+
+
+Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dangnhap', [AdminController::class, 'login']);
+    Route::resource('/baiviet', BaiVietController::class);
+    Route::resource('/chuyenmuc', ChuyenMucController::class);
+    Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
+
 });
 
 
@@ -39,6 +45,4 @@ Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('cke
 Route::get('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
 
-Route::get('/{slug}',[HomeController::class,'loadUrl']);
-
-
+Route::get('/{slug}', [HomeController::class, 'loadUrl']);

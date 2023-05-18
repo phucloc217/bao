@@ -17,6 +17,7 @@
                                 <th>Tác giả</th>
                                 <th>Chuyên mục</th>
                                 <th>Trạng thái</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -26,20 +27,30 @@
                                 <th>Tác giả</th>
                                 <th>Chuyên mục</th>
                                 <th>Trạng thái</th>
+                                <th>Thao tác</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($data as $index => $item)
                                 <tr>
-                                    <th>{{ $index + 1 }}</th>
-                                    <th>{{ $item->tieude }}</th>
-                                    <th></th>
-                                    <th>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td> <a href="{{ '/' . $item->slug . '-post-' . $item->id }}" class="p-0 text-dark">{{ $item->tieude }} </a></td>
+                                    <td>
+                                        @isset($item->tacgia()->name)
+                                        {{ $item->chuyenmuc->tendanhmuc }}
+                                    @endisset
+                                </td>
+                                    <td>
                                         @isset($item->chuyenmuc->tendanhmuc)
                                             {{ $item->chuyenmuc->tendanhmuc }}
                                         @endisset
-                                    </th>
-                                    <th>{{ $item->trangthai }}</th>
+                                    </td>
+                                    <td>{{ $item->trangthai }}</td>
+                                    <td>
+                                        @if (auth()->user()->can('edit post')||auth()->user()->hasRole('admin'))
+                                            <a href="{{ route('baiviet.edit', $item->id) }}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

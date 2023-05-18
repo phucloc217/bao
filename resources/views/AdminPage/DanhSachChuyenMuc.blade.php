@@ -43,14 +43,14 @@
                         <tbody>
                             @foreach ($data as $index => $item)
                                 <tr>
-                                    <th>{{ $index+1 }}</th>
-                                    <th>{{ ucwords($item->tendanhmuc) }}</th>
-                                    <th>{{ $item->baiviets()->count() }}</th>
-                                    <th>
+                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ ucwords($item->tendanhmuc) }}</td>
+                                    <td>{{ $item->baiviets()->count() }}</td>
+                                    <td>
                                         <a href="{{route('chuyenmuc.edit',$item->id)}}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
                                         <button class="btn btn-danger text-light" onclick="modalDelete({{$item->id}})"><i
                                                 class="ti-trash"></i> </button>
-                                    </th>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

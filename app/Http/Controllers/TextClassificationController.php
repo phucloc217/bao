@@ -7,8 +7,10 @@ use Locng\TextClassification\TextClassification;
 
 class TextClassificationController extends Controller
 {
-    public function test()
+    public function predict(Request $request)
     {
-        return TextClassification::event("test",123);
+        $text = $request->text;
+        $value = TextClassification::predict($text);
+        return $value;
     }
 }

@@ -57,7 +57,7 @@ class Baiviet extends Model
 
 	public function tacgia()
 	{
-		return $this->belongsTo(Tacgia::class, 'tacgia');
+		return $this->belongsTo(User::class, 'tacgia');
 	}
 	public function sluggable():array
     {

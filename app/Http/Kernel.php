@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\checkAdminLogin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -36,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            checkAdminLogin::class,
         ],
 
         'api' => [
@@ -64,4 +66,24 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+	/**
+	 * The application's route middleware groups.
+	 * 
+	 * @return array<string, array<int, class-string|string>>
+	 */
+	public function getMiddlewareGroups() {
+		return $this->middlewareGroups;
+	}
+	
+	/**
+	 * The application's route middleware groups.
+	 * 
+	 * @param array<string, array<int, class-string|string>> $middlewareGroups The application's route middleware groups.
+	 * @return self
+	 */
+	public function setMiddlewareGroups($middlewareGroups): self {
+		$this->middlewareGroups = $middlewareGroups;
+		return $this;
+	}
 }

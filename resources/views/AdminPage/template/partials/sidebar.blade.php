@@ -54,18 +54,26 @@
                     </ul>
                 </li>
             @endcanany
-
-            <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                        class="icon-holder"><i class="c-red-500 ti-user"></i> </span><span class="title">Tác giả</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách tác giả</a></li>
-                    <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm tác giả</a></li>
-                </ul>
-            </li>
-            <li class="nav-item"><a class="sidebar-link" href="/admin/thongke"><span class="icon-holder"><i
-                            class="c-purple-500 ti-settings"></i> </span><span class="title">Cài đặt</span></a></li>
-
+            @canany(['view users', 'create user'])
+                <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
+                            class="icon-holder"><i class="c-red-500 ti-user"></i> </span><span class="title">Tác giả</span>
+                        <span class="arrow"><i class="ti-angle-right"></i></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách tác giả</a></li>
+                        <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm tác giả</a></li>
+                    </ul>
+                </li>
+            @endcanany
+            @can('change setting')
+                <li class="nav-item">
+                    <a class="sidebar-link" href="/admin/thongke">
+                        <span class="icon-holder">
+                            <i class="c-purple-500 ti-settings"></i>
+                        </span>
+                        <span class="title">Cài đặt</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

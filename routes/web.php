@@ -33,7 +33,7 @@ Route::get('logout',[AdminController::class,'logout'])->name('logout');
 Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/dangnhap', [AdminController::class, 'login']);
-    Route::resource('/baiviet', BaiVietController::class);
+    Route::resource('/baiviet', BaiVietController::class,['update-post'=>['update']]);
     Route::resource('/chuyenmuc', ChuyenMucController::class);
     Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
 

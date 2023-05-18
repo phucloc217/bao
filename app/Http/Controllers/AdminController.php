@@ -14,11 +14,11 @@ class AdminController extends Controller
     public function index()
     {
         // $user = Auth::user();
-        // $user->assignRole('admin');
+        // $user->assignRole('tacgia');
         //Role::create(['name'=>'admin']);
         // Permission::create(['name'=>'view category']);
-        // $role = Role::findByName('admin');
-        // $role->syncPermissions(Permission::all());
+        // $role = Role::findByName('tacgia');
+        // $role->syncPermissions(['edit post','write post','view post','edit user']);
         // Permission::create(['name'=>'edit category']);
         // Permission::create(['name'=>'delete category']);
         // Permission::create(['name'=>'create category']);

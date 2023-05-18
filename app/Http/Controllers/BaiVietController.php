@@ -6,6 +6,8 @@ use App\Models\Baiviet;
 use App\Models\Danhmuc;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BaiVietController extends Controller
 {
@@ -14,7 +16,11 @@ class BaiVietController extends Controller
      */
     public function index()
     {
-        $data = Baiviet::all();
+        $data = [];
+        if (Auth::user()->hasRole('admin'))
+            $data = Baiviet::all();
+        else
+            $data = Baiviet::where('tacgia', '=', Auth::user()->id);
         return view('AdminPage.DanhSachBaiViet', compact('data'));
     }
 
@@ -23,6 +29,8 @@ class BaiVietController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->can('write post'))
+            abort(403);
         $chuyenmuc = Danhmuc::all();
         return view('AdminPage.ThemBaiViet', compact('chuyenmuc'));
     }
@@ -32,6 +40,8 @@ class BaiVietController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->can('write post'))
+            abort(403);
         $validated = $request->validate([
             'tieude' => 'required|unique:baiviet|max:255',
             'noidung' => 'required',
@@ -71,6 +81,8 @@ class BaiVietController extends Controller
      */
     public function edit(string $id)
     {
+        if (!Auth::user()->can('edit post'))
+            abort(403);
         $chuyenmuc = Danhmuc::all();
         $baiviet = Baiviet::find($id);
         return view('AdminPage.CapNhatBaiViet', compact('chuyenmuc', 'baiviet'));
@@ -81,12 +93,15 @@ class BaiVietController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $baiviet = Baiviet::find($id);
+        if (!Gate::allows('update-post', $baiviet))
+            abort(403);
         $validated = $request->validate([
             'tieude' => 'required|max:255',
             'noidung' => 'required',
-            'anh' => 'image'
+
         ]);
-        $baiviet = Baiviet::find($id);
+
         $baiviet->tieude = $request->tieude;
         $baiviet->tomtat = $request->tomtat;
         $baiviet->noidung = $request->noidung;
@@ -106,6 +121,17 @@ class BaiVietController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!Auth::user()->can('delete post'))
+            abort(403);
+        $baiviet = Baiviet::find($id);
+        if ($baiviet != null) {
+            if ($baiviet->delete()) {
+                return redirect()->route('baiviet.index')->with('success', 'Xóa thành công');
+            } else {
+                return redirect()->route('baiviet.index')->with('error', 'Xóa không thành công');
+            }
+        } else {
+            return redirect()->route('baiviet.index')->with('error', 'Không tìm thấy chuyên mục này');
+        }
     }
 }

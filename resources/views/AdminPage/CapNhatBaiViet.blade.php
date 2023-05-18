@@ -27,9 +27,10 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
-                    <form action="{{ route('baiviet.update',$baiviet->id) }}" method="POST">
-                        @csrf
+                    <form action="{{ route('baiviet.update',$baiviet->id) }}" method="POST" enctype="multipart/form-data">
                         @method('patch')
+                        @csrf
+                        
                         <div class="form-group" class="form-control">
                             <strong>Tiêu đề:</strong>
                             <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề" value="{{$baiviet->tieude}}" required>
@@ -55,7 +56,7 @@
 
                         <div class="form-group">
                             <strong>Tóm tắt:</strong>
-                            <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt" value="{{$baiviet->tomtat}}" required>
+                            <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt" value="{{$baiviet->tomtat}}">
                         </div>
                         <div class="form-group">
                             <strong>Nội dung:</strong>

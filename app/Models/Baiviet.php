@@ -55,7 +55,7 @@ class Baiviet extends Model
 		return $this->belongsTo(Danhmuc::class, 'danhmuc');
 	}
 
-	public function tacgia()
+	public function user()
 	{
 		return $this->belongsTo(User::class, 'tacgia');
 	}

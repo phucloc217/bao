@@ -56,11 +56,11 @@
             @endcanany
             @canany(['view users', 'create user'])
                 <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                            class="icon-holder"><i class="c-red-500 ti-user"></i> </span><span class="title">Tác giả</span>
+                            class="icon-holder"><i class="c-red-500 ti-user"></i> </span><span class="title">Người dùng</span>
                         <span class="arrow"><i class="ti-angle-right"></i></span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="sidebar-link" href="{{ route('baiviet.index') }}">Danh sách tác giả</a></li>
-                        <li><a class="sidebar-link" href="{{ route('baiviet.create') }}">Thêm tác giả</a></li>
+                        <li><a class="sidebar-link" href="{{ route('user.index') }}">Danh sách người dùng</a></li>
+                        <li><a class="sidebar-link" href="{{ route('user.create') }}">Thêm người dùng</a></li>
                     </ul>
                 </li>
             @endcanany

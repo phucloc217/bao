@@ -36,8 +36,8 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td> <a href="{{ '/' . $item->slug . '-post-' . $item->id }}" class="p-0 text-dark">{{ $item->tieude }} </a></td>
                                     <td>
-                                        @isset($item->tacgia()->name)
-                                        {{ $item->chuyenmuc->tendanhmuc }}
+                                        @isset($item->user->name)
+                                        {{ $item->user->name }}
                                     @endisset
                                 </td>
                                     <td>

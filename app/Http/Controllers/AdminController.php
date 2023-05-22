@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\Baiviet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 class AdminController extends Controller
 {
     public function index()
@@ -36,7 +39,6 @@ class AdminController extends Controller
         $login = [
             'email' => $request->email,
             'password' => $request->password,
-            'level' => 1,
             'trangthai' => 1
         ];
         if (Auth::attempt($login))
@@ -50,8 +52,11 @@ class AdminController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-    public function test()
+    public function UserInfo()
     {
-        return Hash::make('123');
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $baiviet = Baiviet::where('tacgia','=',$id)->get();
+        return view('AdminPage.UserInfomation',compact('data','baiviet'));
     }
 }

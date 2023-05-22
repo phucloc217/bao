@@ -14,7 +14,7 @@
                     <div class="peer"><span class="fsz-sm c-grey-900">{{Auth()->user()->name}}</span></div>
                 </a>
                 <ul class="dropdown-menu fsz-sm">
-                    <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Thông tin cá nhân</span></a></li>
+                    <li><a href="{{route('UserInfo')}}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i> <span>Thông tin cá nhân</span></a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{route('logout')}}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i> <span>Đăng xuất</span></a></li>
                 </ul>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\ChuyenMucController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TextClassificationController;
@@ -32,10 +33,12 @@ Route::get('logout',[AdminController::class,'logout'])->name('logout');
 
 Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
+    Route::get('/thongtincanhan', [AdminController::class, 'UserInfo'])->name('UserInfo');
     Route::get('/dangnhap', [AdminController::class, 'login']);
     Route::resource('/baiviet', BaiVietController::class,['update-post'=>['update']]);
     Route::resource('/chuyenmuc', ChuyenMucController::class);
     Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
+    Route::resource('/user', UserController::class);
 
 });
 

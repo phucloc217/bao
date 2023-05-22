@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Danhmuc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChuyenMucController extends Controller
 {
@@ -12,6 +13,8 @@ class ChuyenMucController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->can('view category'))
+            abort(403);
         $data = Danhmuc::all();
         return view('AdminPage.DanhSachChuyenMuc', compact('data'));
     }
@@ -21,6 +24,8 @@ class ChuyenMucController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->can('create category'))
+            abort(403);
         return view('AdminPage.ThemChuyenMuc');
     }
     public function to_slug($str)
@@ -43,6 +48,8 @@ class ChuyenMucController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->can('create category'))
+            abort(403);
         if (isset($request->tenchuyenmuc)) {
 
             //Chuẩn hóa chữ
@@ -98,6 +105,8 @@ class ChuyenMucController extends Controller
      */
     public function edit(string $id)
     {
+        if (!Auth::user()->can('edit category'))
+            abort(403);
         $data = Danhmuc::find($id);
         return view('AdminPage.CapNhatChuyenMuc', compact('data'));
     }
@@ -107,6 +116,8 @@ class ChuyenMucController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (!Auth::user()->can('edit category'))
+            abort(403);
         $chuyenmuc = Danhmuc::find($id);
         if ($chuyenmuc != null) {
             if (isset($request->tenchuyenmuc)) {

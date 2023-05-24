@@ -11,6 +11,8 @@ class TextClassificationController extends Controller
     {
         $text = $request->text;
         $value = TextClassification::predict($text);
-        return $value;
+        $value = json_decode($value);
+        $label = $value->label;
+        return ucwords($label[0].', '.$label[1].', '.$label[2]);
     }
 }

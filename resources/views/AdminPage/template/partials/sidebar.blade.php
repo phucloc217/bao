@@ -65,14 +65,17 @@
                 </li>
             @endcanany
             @can('change setting')
-                <li class="nav-item">
-                    <a class="sidebar-link" href="/admin/thongke">
-                        <span class="icon-holder">
-                            <i class="c-purple-500 ti-settings"></i>
-                        </span>
-                        <span class="title">Cài đặt</span>
-                    </a>
-                </li>
+            <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
+                class="icon-holder"><i class="c-purple-500 ti-settings"></i> </span><span class="title">Cài đặt</span>
+            <span class="arrow"><i class="ti-angle-right"></i></span></a>
+        <ul class="dropdown-menu">
+            <li><a class="sidebar-link" href="/admin/nhomquyen">Nhóm quyền</a></li>
+            <li><a class="sidebar-link" href="{{ route('user.create') }}">Thêm người dùng</a></li>
+        </ul>
+    </li>
+
+
+                
             @endcan
         </ul>
     </div>

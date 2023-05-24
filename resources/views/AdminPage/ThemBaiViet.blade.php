@@ -88,7 +88,7 @@
                     console.log(response.data);
                     Swal.fire({
                         title: 'Kết quả phân tích',
-                        text: response.data.label,
+                        text: response.data,
                         icon: 'info',
                         showCancelButton: false,
                         confirmButtonText: 'OK',

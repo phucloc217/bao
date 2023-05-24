@@ -39,7 +39,9 @@ Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
     Route::resource('/chuyenmuc', ChuyenMucController::class);
     Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
     Route::resource('/user', UserController::class);
-
+    Route::get('/nhomquyen',[AdminController::class,'NhomQuyen']);
+    Route::get('/nhomquyen/{name}',[AdminController::class,'ChiTietNhomQuyen']);
+    Route::patch('/nhomquyen/{name}',[AdminController::class,'CapNhatNhomQuyen']);
 });
 
 

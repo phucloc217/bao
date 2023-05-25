@@ -10,9 +10,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         $danhmuc = Danhmuc::all();
-        return view('index', compact('danhmuc'));
+        $id = [];
+        foreach ($danhmuc as $key => $value) {
+            array_push($id,$value->baiviets()->where('trangthai','=','1')->latest()->first()->id);
+        }
+        $baivietmoi= Baiviet::whereIn('id',$id)->get();
+        return view('index', compact('danhmuc','baivietmoi'));
     }
 
     public function loadUrl($slug)

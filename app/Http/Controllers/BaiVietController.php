@@ -101,13 +101,17 @@ class BaiVietController extends Controller
             'noidung' => 'required',
 
         ]);
-
+        $anh = $baiviet->anh;
+        if ($request->anh != '') {
+            $url = $request->file('anh')->store('public/anhbaiviet');      
+            $anh = substr($url, strlen('public/'));
+        }
         $baiviet->tieude = $request->tieude;
         $baiviet->tomtat = $request->tomtat;
         $baiviet->noidung = $request->noidung;
         $baiviet->slug = SlugService::createSlug(Baiviet::class, 'slug', $request->tieude);
         $request->chuyenmuc == '' ? $baiviet->danhmuc = null : $baiviet->danhmuc = $request->chuyenmuc;
-        $request->anh == '' ? $baiviet->anh = 'default.jpg' : $baiviet->anh = $request->anh;
+        $baiviet->anh = $anh;
         $request->trangthai == 1 ? $baiviet->trangthai = 1 : $baiviet->trangthai = 0;
         if ($baiviet->save()) {
             return redirect()->route('baiviet.edit', $id)->with('success', 'Câp nhật thành công');

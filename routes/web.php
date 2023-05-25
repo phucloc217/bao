@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 //Text Classfier
 Route::post('/predict', [TextClassificationController::class, 'predict']);
 Route::get('/', [HomeController::class, 'index']);
+// Route::get('/test', [AdminController::class, 'test']);
 
 
 //Admin Page Route

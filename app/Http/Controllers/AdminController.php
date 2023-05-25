@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Models\Baiviet;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
@@ -82,5 +83,16 @@ class AdminController extends Controller
         $status = $role->syncPermissions($request->permissions);
         if($status) return redirect()->back()->with('success',"Cập nhật thành công");
         return redirect()->back()->with('error',"Cập nhật không thành công");
+    }
+
+    public function test()
+    {
+        // ini_set('max_execution_time', 18000);
+        $data = Baiviet::all();
+        foreach ($data as $item) {
+            $item->slug = SlugService::createSlug(Baiviet::class, 'slug', $item->tieude);
+            $item->save();
+        }
+        return 1;
     }
 }

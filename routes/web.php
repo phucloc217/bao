@@ -6,6 +6,7 @@ use App\Http\Controllers\ChuyenMucController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TextClassificationController;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,7 @@ Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
     Route::resource('/chuyenmuc', ChuyenMucController::class);
     Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
     Route::resource('/user', UserController::class);
-    Route::get('/nhomquyen',[AdminController::class,'NhomQuyen']);
-    Route::get('/nhomquyen/{name}',[AdminController::class,'ChiTietNhomQuyen']);
-    Route::patch('/nhomquyen/{name}',[AdminController::class,'CapNhatNhomQuyen']);
+    Route::resource('/nhomquyen',RoleController::class);
 });
 
 

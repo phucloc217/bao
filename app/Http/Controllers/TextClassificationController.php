@@ -13,6 +13,7 @@ class TextClassificationController extends Controller
         $value = TextClassification::predict($text);
         $value = json_decode($value);
         $label = $value->label;
-        return ucwords($label[0].', '.$label[1].', '.$label[2]);
+        // return ucwords($label[0].', '.$label[1].', '.$label[2]);
+        return ucwords($label[0]);
     }
 }

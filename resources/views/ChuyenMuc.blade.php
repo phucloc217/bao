@@ -26,8 +26,8 @@
                                                 <div
                                                     class="trand-right-img w-100 pr-0 col-md-3 col-sm-12 text-center p-0 mr-2">
                                                     <a href="{{ '/' . $item->slug . '-post-' . $item->id }}" class="p-0">
-                                                        <img src="{{ $item->anh }}" alt=""
-                                                            class="img-fuild w-100" style="max-width: 100vw;"></a>
+                                                        <img src="{{ asset('storage/' . $item->anh) }}" alt=""
+                                                            class="img-fuild w-100" style="max-width: 100vw; object-fit: cover"></a>
                                                 </div>
                                                 <div class="media-body col-md-9 col-sm-12 p-0">
                                                     <h4 class="w-auto"><a

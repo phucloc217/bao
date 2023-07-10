@@ -17,16 +17,23 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // $user = Auth::user();
-        // $user->assignRole('tacgia');
+        $user = Auth::user();
+         
+        //  $user->removeRole('tacgia');
+        //  $user->assignRole('admin');
         //Role::create(['name'=>'admin']);
-        // Permission::create(['name'=>'view category']);
-         //$role = Role::findByName('tacgia');
-        // $role->syncPermissions(['edit post','write post','view post','edit user']);
+        //  Permission::create(['name'=>'create role']);
+        //  Permission::create(['name'=>'edit role']);
+        //  Permission::create(['name'=>'view role']);
+        //  Permission::create(['name'=>'delete role']);
+        //  $role = Role::findByName('admin');
+        //  $role->syncPermissions(Permission::all());
         // Permission::create(['name'=>'edit category']);
         // Permission::create(['name'=>'delete category']);
         // Permission::create(['name'=>'create category']);
-        return view('AdminPage.index');
+        $countBaiViet = Baiviet::count();
+        $countTacGia = User::count();
+        return view('AdminPage.index', compact('countBaiViet','countTacGia'));
     }
     public function login()
     {
@@ -60,30 +67,8 @@ class AdminController extends Controller
         $baiviet = Baiviet::where('tacgia','=',$id)->get();
         return view('AdminPage.UserInfomation',compact('data','baiviet'));
     }
-    public function NhomQuyen()
-    {
-        $role = Role::all();
-
-        return view('AdminPage.DanhSachNhomQuyen',compact('role'));
-    }
-    public function ChiTietNhomQuyen($name)
-    {
-        $permissions = Permission::all();
-        $role = Role::findByName($name);
-        $RolePermissions = [];
-        foreach($role->permissions as $item)
-        {
-            array_push($RolePermissions,$item->name);
-        }
-        return view('AdminPage.ChiTietNhomQuyen',compact('role','permissions','RolePermissions'));
-    }
-    public function CapNhatNhomQuyen(Request $request,$name)
-    {
-        $role= Role::findByName($name);
-        $status = $role->syncPermissions($request->permissions);
-        if($status) return redirect()->back()->with('success',"Cập nhật thành công");
-        return redirect()->back()->with('error',"Cập nhật không thành công");
-    }
+    
+  
 
     public function test()
     {

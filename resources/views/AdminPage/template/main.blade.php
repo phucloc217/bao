@@ -10,6 +10,7 @@
     @include('AdminPage.template.partials.loader')
     <link rel="stylesheet" href="{{url('')}}/AdminPage/css/app.css">
     {{-- <link href="{{url('')}}/admin/css/style.css" rel="stylesheet"> --}}
+
 </head>
 
 <body class="app">

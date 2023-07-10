@@ -10,7 +10,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                    <h4 class="c-grey-900 mB-20">Danh sách nhóm quyền</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="c-grey-900 mB-20">Danh sách nhóm quyền</h4>
+                        </div>
+                        <div class="col-6 text-right">
+                           <a href="/admin/nhomquyen/create" class="btn btn-primary btn-md">Thêm</a>
+                            
+                        </div>
+                    </div>
+
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -40,15 +49,21 @@
                         </tfoot>
                         <tbody>
                             @foreach ($role as $index => $item)
-                                <tr>
-                                    <td>{{ $index+1 }}</td>
-                                    <td>{{ ucwords($item->name) }}</td>
-                                    <td>
-                                        <a href="/admin/nhomquyen/{{$item->name}}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
-                                        <button class="btn btn-danger text-light" onclick="modalDelete({{$item->id}})"><i
-                                                class="ti-trash"></i> </button>
-                                    </td>
-                                </tr>
+                                @if ($item->name != 'admin')
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ ucwords($item->name) }}</td>
+                                        <td>
+                                            <a href="{{ route('nhomquyen.edit',$item->name)}}"
+                                                class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
+
+                                            <button class="btn btn-danger text-light"
+                                                onclick="modalDelete({{ $item->id }})"><i class="ti-trash"></i>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -67,7 +82,7 @@
                 confirmButtonText: 'Xóa',
                 cancelButtonText: 'Đóng'
             }).then((result) => {
-                window.location.replace("/admin/chuyenmuc/delete/"+id);
+                window.location.replace("/admin/nhomquyenz/delete/" + id);
             })
         }
     </script>

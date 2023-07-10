@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -23,7 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('AdminPage.ThemNguoiDung');
+        $role = Role::all();
+        return view('AdminPage.ThemNguoiDung', compact('role'));
     }
 
     /**
@@ -57,7 +60,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-       
+       $data = User::find($id);
+       $role = Role::all();
+       $userRole = $data->getRoleNames()[0];
+       return view('AdminPage.CapNhatNguoiDung',compact('data','role','userRole'));
     }
 
     /**
@@ -65,7 +71,26 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $request->validate([
+            'name' => 'required|max:255',
+            'ngaysinh' => 'date',
+            'email' => 'required|email|unique:users,email,'.$user->id
+        ],[
+            'name.required' => 'Vui lòng nhập họ tên',
+            'ngaysinh.date' => 'Sai định dạng ngày sinh',
+            'email.required' => 'Vui lòng nhập Email',
+            'email.email' => 'Sai định dạng Email',
+            'email.unique'=>'Email đã tồn tại'
+        ]);
+        $user->update($request->all());
+        
+        if ($user->save()) {
+            return redirect()->route('user.edit', $id)->with('success', 'Cập nhật thành công');
+        } else {
+            return redirect()->route('user.edit', $id)->with('error', 'Cập nhật không thành công');
+        }
+        
     }
 
     /**

@@ -51,8 +51,7 @@
                                     <td>{{ $item->trangthai }}</td>
                                     <td>
                                         <a href="{{route('user.edit',$item->id)}}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
-                                        <button class="btn btn-danger text-light" onclick="modalDelete({{$item->id}})"><i
-                                                class="ti-trash"></i> </button>
+                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,19 +61,4 @@
             </div>
         </div>
     </div>
-    <script>
-        function modalDelete(id) {
-            Swal.fire({
-                title: 'Bạn có chắc muốn xóa không?',
-                text: "Sau khi xóa, những bài viết thuộc chuyên mục này sẽ không được xếp vào chuyên mục nào.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Xóa',
-                cancelButtonText: 'Đóng'
-            }).then((result) => {
-                window.location.replace("/admin/chuyenmuc/delete/"+id);
-            })
-        }
-    </script>
 @endsection

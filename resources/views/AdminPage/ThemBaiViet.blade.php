@@ -32,45 +32,58 @@
                     @endif
                     <form action="{{ route('baiviet.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group" class="form-control">
-                            <strong>Tiêu đề:</strong>
-                            <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề" required>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12">
+                                <div class="form-group">
+                                    <strong>Nội dung:</strong>
+                                    <textarea name="noidung" id="noidung"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group" class="form-control">
+                                    <strong>Tiêu đề:</strong>
+                                    <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề"
+                                        required>
+                                </div>
 
-                        <div class="form-group">
-                            <strong>Chuyên mục:</strong>
-                            <select name="chuyenmuc" id="chuyenmuc" class="form-control">
-                                <option value="">Không phân loại</option>
-                                @foreach ($chuyenmuc as $item)
-                                    <option value="{{ $item->id }}">{{ ucwords($item->tendanhmuc) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <strong>Ảnh thu nhỏ:</strong>
-                            <input type="file" name="anh" class="form-control" accept="image/png, image/jpeg">
-                        </div>
+                                <div class="form-group">
+                                    <strong>Chuyên mục:</strong>
+                                    <select name="chuyenmuc" id="chuyenmuc" class="form-control">
+                                        <option value="">Không phân loại</option>
+                                        @foreach ($chuyenmuc as $item)
+                                            <option value="{{ $item->id }}">{{ ucwords($item->tendanhmuc) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <strong>Ảnh thu nhỏ:</strong>
+                                    <input type="file" name="anh" class="form-control"
+                                        accept="image/png, image/jpeg">
+                                </div>
 
-                        <div class="form-group">
-                            <strong>Tóm tắt:</strong>
-                            <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt" required>
-                        </div>
-                        <div class="form-group">
-                            <strong>Nội dung:</strong>
-                            <textarea name="noidung" id="noidung"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <strong>Đăng ngay:</strong>
-                            <input type="checkbox" name="trangthai" class="" placeholder="Tóm tắt" value="1"
-                                checked>
-                        </div>
-                        <div class="form-group mt-5">
-                            <button class="btn btn-success" type="submit">Lưu</button>
+                                <div class="form-group">
+                                    <strong>Tóm tắt:</strong>
+                                    <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <strong>Đăng ngay:</strong>
+                                    <input type="checkbox" name="trangthai" class="" placeholder="Tóm tắt"
+                                        value="1" checked>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 form-group">
+                                        <button class="btn btn-success" type="submit">Lưu</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary" onclick="modal()">Phân tích</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </form>
-                    <div>
-                        <button class="btn btn-primary" onclick="modal()">Phân tích</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -84,6 +97,7 @@
             var form = new FormData();
             let text = myEditor.getData();
             form.append('text', text);
+            swal.showLoading();
             axios.post('/predict', form).then(function(response) {
                     console.log(response.data);
                     Swal.fire({
@@ -95,9 +109,15 @@
                     })
                 })
                 .catch(function(error) {
+                    Swal.fire({
+                        title: 'Lỗi',
+                        text: error,
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                    })
                     console.log(error);
                 });
-
         }
     </script>
     <script>
@@ -106,9 +126,9 @@
                 ckfinder: {
                     uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}'
                 }
-            }).then( editor => {
+            }).then(editor => {
             myEditor = editor;
-        } )
+        })
 
         CKEDITOR.config.extraPlugins = "imageresize";
     </script>

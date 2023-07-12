@@ -29,6 +29,7 @@
                                 <th>STT</th>
                                 <th>Chuyên mục</th>
                                 <th>Số lượng bài viết</th>
+                                <th>Trạng thái</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -37,19 +38,32 @@
                                 <th>STT</th>
                                 <th>Chuyên mục</th>
                                 <th>Số lượng bài viết</th>
+                                <th>Trạng thái</th>
                                 <th>Thao tác</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($data as $index => $item)
                                 <tr>
-                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ ucwords($item->tendanhmuc) }}</td>
                                     <td>{{ $item->baiviets()->count() }}</td>
                                     <td>
-                                        <a href="{{route('chuyenmuc.edit',$item->id)}}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
-                                        <button class="btn btn-danger text-light" onclick="modalDelete({{$item->id}})"><i
-                                                class="ti-trash"></i> </button>
+                                        <form action="/admin/chuyenmuc/doitrangthai/{{ $item->id }}" method="get" id="frm-{{$item->id}}">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="trangthai{{ $item->id }}"
+                                                    @if ($item->trangthai) {{ 'checked' }} @endif>
+                                                <label class="custom-control-label" for="trangthai{{ $item->id }}"
+                                                    onclick="changeStatus({{ $item->id }})"></label>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('chuyenmuc.edit', $item->id) }}"
+                                            class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>
+                                        <button class="btn btn-danger text-light"
+                                            onclick="modalDelete({{ $item->id }})"><i class="ti-trash"></i> </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,8 +84,12 @@
                 confirmButtonText: 'Xóa',
                 cancelButtonText: 'Đóng'
             }).then((result) => {
-                window.location.replace("/admin/chuyenmuc/delete/"+id);
+                window.location.replace("/admin/chuyenmuc/delete/" + id);
             })
+        }
+
+        function changeStatus(id) {
+            document.getElementById("frm-"+id).submit();
         }
     </script>
 @endsection

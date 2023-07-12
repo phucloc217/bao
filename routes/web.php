@@ -40,6 +40,7 @@ Route::middleware(Authenticate::class)->prefix('admin')->group(function () {
     Route::resource('/baiviet', BaiVietController::class,['update-post'=>['update']]);
     Route::resource('/chuyenmuc', ChuyenMucController::class);
     Route::get('/chuyenmuc/delete/{id}', [ChuyenMucController::class, 'destroy']);
+    Route::get('/chuyenmuc/doitrangthai/{id}', [ChuyenMucController::class, 'changeStatusf']);
     Route::resource('/user', UserController::class);
     Route::resource('/nhomquyen',RoleController::class);
 });

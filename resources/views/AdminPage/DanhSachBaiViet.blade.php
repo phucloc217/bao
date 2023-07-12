@@ -45,7 +45,15 @@
                                             {{ $item->chuyenmuc->tendanhmuc }}
                                         @endisset
                                     </td>
-                                    <td>{{ $item->trangthai }}</td>
+                                    <td><form action="/admin/baiviet/doitrangthai/{{ $item->id }}" method="get" id="frm-{{$item->id}}">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input"
+                                                id="trangthai{{ $item->id }}"
+                                                @if ($item->trangthai) {{ 'checked' }} @endif>
+                                            <label class="custom-control-label" for="trangthai{{ $item->id }}"
+                                                onclick="changeStatus({{ $item->id }})"></label>
+                                        </div>
+                                    </form></td>
                                     <td>
                                         @if (auth()->user()->can('edit post')||auth()->user()->hasRole('admin'))
                                             <a href="{{ route('baiviet.edit', $item->id) }}" class="btn btn-warning text-light"><i class="ti-pencil"></i> </a>

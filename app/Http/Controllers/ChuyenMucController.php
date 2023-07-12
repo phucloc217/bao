@@ -179,4 +179,19 @@ class ChuyenMucController extends Controller
             return redirect()->route('chuyenmuc.index')->with('error', 'Không tìm thấy chuyên mục này');
         }
     }
+
+    public function changeStatus($id) {
+        $danhmuc = Danhmuc::find($id);
+        if ($danhmuc != null) {
+            if($danhmuc->trangthai) $danhmuc->trangthai=0 ;
+            else $danhmuc->trangthai=1;
+            if ($danhmuc->save()) {
+                return redirect()->route('chuyenmuc.index')->with('success', 'Đổi trạng thái thành công');
+            } else {
+                return redirect()->route('chuyenmuc.index')->with('error', 'Đổi trạng thái không thành công');
+            }
+        } else {
+            return redirect()->route('chuyenmuc.index')->with('error', 'Không tìm thấy chuyên mục này');
+        }
+    }
 }

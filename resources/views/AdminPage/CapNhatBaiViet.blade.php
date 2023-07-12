@@ -30,47 +30,77 @@
                     <form action="{{ route('baiviet.update',$baiviet->id) }}" method="POST" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
-                        
-                        <div class="form-group" class="form-control">
-                            <strong>Tiêu đề:</strong>
-                            <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề" value="{{$baiviet->tieude}}" required>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12">
+                                <div class="form-group">
+                                    <strong>Nội dung:</strong>
+                                    <textarea name="noidung" id="noidung">{{$baiviet->noidung}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group" class="form-control">
+                                    <strong>Tiêu đề:</strong>
+                                    <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề"
+                                        maxlength="150"  value="{{$baiviet->tieude}}" required>
+                                </div>
 
-                        <div class="form-group">
-                            <strong>Chuyên mục:</strong>
-                            <select name="chuyenmuc" id="chuyenmuc" class="form-control">
-                                <option value=""@if ($baiviet->danhmuc ==null){{'selected'}}
-                                        
-                                    @endif>Chưa phân loại</option>
-                                @foreach ($chuyenmuc as $item)
-                                    <option value="{{ $item->id }}" @if ($item->id==$baiviet->danhmuc){{'selected'}}
-                                        
-                                    @endif>{{ ucwords($item->tendanhmuc) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <strong>Ảnh thu nhỏ:</strong>
-                            <input type="file" name="anh" class="form-control" accept="image/png, image/jpeg">
-                        </div>
+                                <div class="form-group">
+                                    <strong>Chuyên mục:</strong>
+                                    <select name="chuyenmuc" id="chuyenmuc" class="form-control">
+                                        <option value="">Không phân loại</option>
+                                        @foreach ($chuyenmuc as $item)
+                                          <option value=""@if ($baiviet->danhmuc ==null){{'selected'}} @endif>Chưa phân loại</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <strong>Ảnh thu nhỏ:</strong>
+                                    <div class="input-group image-preview">
+                                        <input type="text" class="form-control image-preview-filename"
+                                            disabled="disabled" name="anh" accept="image/png, image/jpeg"> <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn">
+                                            <!-- image-preview-clear button -->
+                                            <button type="button" class="btn btn-default image-preview-clear"
+                                                style="display:none;">
+                                                <span class="glyphicon glyphicon-remove"></span> Clear
+                                            </button>
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default image-preview-input">
+                                                <span class="glyphicon glyphicon-folder-open"></span>
+                                                <span class="image-preview-input-title">Browse</span>
+                                                <input type="file" accept="image/png, image/jpeg, image/gif"
+                                                    name="input-file-preview" /> <!-- rename it -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
 
-                        <div class="form-group">
-                            <strong>Tóm tắt:</strong>
-                            <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt" value="{{$baiviet->tomtat}}">
-                        </div>
-                        <div class="form-group">
-                            <strong>Nội dung:</strong>
-                            <textarea name="noidung" id="noidung" >{{$baiviet->noidung}}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <strong>Hiển thị:</strong>
-                            <input type="checkbox" name="trangthai" class="" placeholder="" value="{{$baiviet->trangthai}}" checked>
-                        </div>
-                        <div class="form-group mt-5">
-                            <button class="btn btn-success" type="submit">Lưu</button>
+                                <div class="form-group">
+                                    <strong>Tóm tắt:</strong>
+                                    <input type="text" name="tomtat" class="form-control" placeholder="Tóm tắt"
+                                    value="{{$baiviet->tomtat}}"  required>
+                                </div>
+
+                                <div class="form-group">
+                                    <strong>Đăng ngay:</strong>
+                                    <input type="checkbox" name="trangthai" class="" placeholder="Tóm tắt"
+                                        value="1" checked>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 form-group">
+                                        <button class="btn btn-success" type="submit">Lưu</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary" type="button" onclick="modal()">Phân tích</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>

@@ -8,9 +8,13 @@
     <title>@yield('title')</title>
 
     @include('AdminPage.template.partials.loader')
-    <link rel="stylesheet" href="{{url('')}}/AdminPage/css/app.css">
+    <link rel="stylesheet" href="{{ url('') }}/AdminPage/css/app.css">
     {{-- <link href="{{url('')}}/admin/css/style.css" rel="stylesheet"> --}}
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{{ url('/') }}/assets/js/vendor/jquery-1.12.4.min.js"></script>
 
+
+    @yield('plugins')
 </head>
 
 <body class="app">
@@ -38,7 +42,13 @@
             @include('AdminPage.template.partials.footer')
         </div>
     </div>
-    <script src="{{url('')}}/AdminPage/js/app.js"></script>
+    <script src="{{ url('/') }}/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{{ url('/') }}/assets/js/jquery.slicknav.min.js"></script>
+    <script src="{{ url('/') }}/assets/js/popper.min.js"></script>
+    <script src="{{ url('/') }}/assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('') }}/AdminPage/js/app.js"></script>
+    @yield('script')
     {{-- <script type="text/javascript" src="{{url('')}}/admin/js/vendor.js"></script>
     <script type="text/javascript" src="{{url('')}}/admin/js/bundle.js"></script> --}}
 </body>

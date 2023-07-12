@@ -17,7 +17,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        //$user = Auth::user();
          
         //  $user->removeRole('tacgia');
         //  $user->assignRole('admin');

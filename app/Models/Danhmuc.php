@@ -27,7 +27,8 @@ class Danhmuc extends Model
 
 	protected $fillable = [
 		'tendanhmuc',
-		'slug'
+		'slug',
+		'trangthai'
 	];
 
 	public function baiviets()

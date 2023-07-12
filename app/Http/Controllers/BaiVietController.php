@@ -138,4 +138,19 @@ class BaiVietController extends Controller
             return redirect()->route('baiviet.index')->with('error', 'Không tìm thấy chuyên mục này');
         }
     }
+
+    public function changeStatus($id) {
+        $baiviet = Baiviet::find($id);
+        if ($baiviet != null) {
+            if($baiviet->trangthai) $baiviet->trangthai=0 ;
+            else $baiviet->trangthai=1;
+            if ($baiviet->save()) {
+                return redirect()->route('baiviet.index')->with('success', 'Đổi trạng thái thành công');
+            } else {
+                return redirect()->route('baiviet.index')->with('error', 'Đổi trạng thái không thành công');
+            }
+        } else {
+            return redirect()->route('baiviet.index')->with('error', 'Không tìm thấy chuyên mục này');
+        }
+    }
 }

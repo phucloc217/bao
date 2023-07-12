@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="{{url('/')}}/assets/css/slick.css">
             <link rel="stylesheet" href="{{url('/')}}/assets/css/nice-select.css">
             <link rel="stylesheet" href="{{url('/')}}/assets/css/style.css">
+            <title>@yield('plugin')</title>
    </head>
 
    <body>
@@ -87,6 +88,6 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="{{url("/")}}/assets/js/plugins.js"></script>
         <script src="{{url("/")}}/assets/js/main.js"></script>
-        
+ 
     </body>
 </html>
